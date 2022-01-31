@@ -1,13 +1,15 @@
 package com.example.calculator_android_app;
 
+import android.app.Activity;
 import android.text.TextUtils;
-import android.util.Log;
+import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Calculator {
+    private Activity activity;
     private ArrayList<String> equation = new ArrayList<>();
+    private String equationString = "";
 
     private String calculate() {
         int size = equation.size();
@@ -63,21 +65,21 @@ public class Calculator {
         return equation.get(0);
     }
 
-    public Calculator() {
+    public Calculator(Activity _activity) {
+        this.activity = _activity;
     }
 
     public void push(String value) {
         if (value.equals("C")) {
-            Log.d("Clearing", equation.toString());
             equation.clear();
-            Log.d("Result", equation.toString());
+            equationString = "";
         } else if (value.equals("=")) {
-            Log.d("Calculating", equation.toString());
-            Log.d("Result", calculate());
-            equation.clear();
+            equationString += " = " + calculate();
         } else {
             equation.add(value);
+            equationString += " " + value;
         }
+        ((TextView)activity.findViewById(R.id.input)).setText(equationString);
     }
 
 }
