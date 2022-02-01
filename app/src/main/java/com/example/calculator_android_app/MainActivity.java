@@ -39,4 +39,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ((Button)view).setText(advancedModeOn ? R.string.toggle_simple_mode : R.string.toggle_advanced_mode);
         findViewById(R.id.advancedBtns).setVisibility(advancedModeOn ? View.VISIBLE : View.INVISIBLE);
     }
+
 }
